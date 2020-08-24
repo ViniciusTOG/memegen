@@ -1,38 +1,169 @@
 .App {
   text-align: center;
+  background-color: rgb(0, 0, 0, 0.1);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.App::after {
+  content: "";
+  background: url(./img/meme.png);
+  background-size: 100px;
+  opacity: 0.06;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.meme {
+  position: relative;
+  width: 500px;
+  height: 400px;
+  margin: 0 auto;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.meme-img img {
+  width: 500px;
+  height: 400px;
+}
+
+.input-text {
+  width: 100%;
+  height: 100%;
+  position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  justify-content: space-between;
+  word-break: break-all;
+}
+
+.input-text h1 {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  -webkit-text-stroke: 1.8px black;
+  font-size: 2.3rem;
 }
 
-.App-link {
-  color: #61dafb;
+.App button {
+  padding: 1rem;
+  background: blueviolet;
+  color: white;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 2rem;
+  border: none;
+  margin-top: 20px;
+  cursor: pointer;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.input input {
+  padding: 5px;
+  font-size: 20px;
+}
+
+.input {
+  display: flex;
+  width: 400px;
+  flex-direction: column;
+}
+
+.input-order {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.input-order p {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 200px;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.header {
+  height: 5rem;
+  background-color: blueviolet;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header h1 {
+  color: white;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  -webkit-text-stroke: 2.4px black;
+  font-size: 3rem;
+}
+
+.footer {
+  background-color: blueviolet;
+  width: 100%;
+  color: white;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  bottom: 0px;
+  margin-top: 4rem;
+}
+
+.footer p:nth-child(2) {
+  color: aqua;
+  margin-top: 5px;
+}
+
+.footer p {
+  margin: 0px;
+}
+
+@media screen and (max-width: 900px) {
+  .container {
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 200px;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
   }
-  to {
-    transform: rotate(360deg);
+
+  .input {
+    display: flex;
+    width: 400px;
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .meme {
+    position: relative;
+    width: 400px;
+    height: 300px;
+    margin: 0 auto;
+  }
+
+  .meme-img img {
+    width: 400px;
+    height: 300px;
+  }
+  .input-text h1 {
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    -webkit-text-stroke: 1.2px black;
+    font-size: 1.5rem;
   }
 }
