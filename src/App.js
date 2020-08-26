@@ -1,80 +1,80 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import Meme from "./Meme.js";
 import Input from "./Input.js";
 import Header from "./Header.js";
 import Footer from "./Footer.js";
 
-class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      upperText: "",
-      bottomText: "",
-      randomImg: "",
-    };
-    this.genMeme = this.genMeme.bind(this);
-    this.updateText = this.updateText.bind(this);
-  }
+function App() {
+  const [upperText, setUpperText] = useState("");
+  const [bottomText, setBottomText] = useState("");
+  const [randomImg, setRandomImg] = useState("");
+
+  // constructor() {
+  //   super();
+  //   this.state = {
+  //     upperText: "",
+  //     bottomText: "",
+  //     randomImg: "",
+  //   };
+  //   this.genMeme = this.genMeme.bind(this);
+  //   this.updateText = this.updateText.bind(this);
+  // }
 
   //LIFECYCLE METHOD
 
-  componentDidMount() {
+  useEffect(() => {
     fetch("https://api.imgflip.com/get_memes")
       .then((response) => response.json())
       .then((response) => {
         const memes = response.data.memes;
-        const randomMemes = memes[Math.floor(Math.random() * memes.length)];
-        this.setState({
-          randomImg: randomMemes.url,
-        });
+        const randomMemes = memes[Math.floor(Math.random() * memes.length)].url;
+        console.log(randomMemes);
+        setRandomImg(randomMemes);
       });
-  }
+  }, []);
 
   //METHODS
 
-  genMeme() {
+  function genMeme() {
     fetch("https://api.imgflip.com/get_memes")
       .then((response) => response.json())
       .then((response) => {
         const memes = response.data.memes;
-        const randomMemes = memes[Math.floor(Math.random() * memes.length)];
-        this.setState({
-          randomImg: randomMemes.url,
-        });
-        console.log(this.state.randomImg);
+        const randomMemes = memes[Math.floor(Math.random() * memes.length)].url;
+        setRandomImg(randomMemes);
       });
   }
 
-  updateText(event) {
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value,
-    });
+  function updateUpperText(event) {
+    setUpperText(event.target.value);
+  }
+
+  function updateBottomText(event) {
+    setBottomText(event.target.value);
   }
 
   //MAIN APP
-  render() {
-    return (
-      <div className="App">
-        <Header />
-        <div className="container">
-          <Input
-            upperText={this.state.upperText}
-            bottomText={this.state.bottomText}
-            updateText={this.updateText}
-          />
-          <Meme
-            upperText={this.state.upperText}
-            bottomText={this.state.bottomText}
-            randomImg={this.state.randomImg}
-            genMeme={this.genMeme}
-          />
-        </div>
-        <Footer />
+  return (
+    <div className="App">
+      <Header />
+      <div className="container">
+        <Input
+          upperText={upperText}
+          bottomText={bottomText}
+          updateUpperText={updateUpperText}
+          updateBottomText={updateBottomText}
+        />
+        <Meme
+          upperText={upperText}
+          bottomText={bottomText}
+          randomImg={randomImg}
+          genMeme={genMeme}
+        />
       </div>
-    );
-  }
+      <Footer />
+    </div>
+  );
 }
 
 export default App;

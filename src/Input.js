@@ -7,18 +7,18 @@ function Input(props) {
         <p>Top Text:</p>
         <input
           type="text"
-          name="upperText"
+          name="setUpperText"
           value={props.upperText}
-          onChange={props.updateText}
+          onChange={props.updateUpperText}
         />
       </div>
       <div className="input-order">
         <p>Bottom Text:</p>
         <input
           type="text"
-          name="bottomText"
+          name="setBottomText"
           value={props.bottomText}
-          onChange={props.updateText}
+          onChange={props.updateBottomText}
         />
       </div>
     </div>
